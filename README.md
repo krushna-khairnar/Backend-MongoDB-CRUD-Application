@@ -34,5 +34,4 @@ The API manages an inventory of sweet dishes, with each item containing:
 
 ---
 
-## 📁 Folder Structure
 
