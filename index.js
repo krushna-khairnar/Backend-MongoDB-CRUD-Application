@@ -1,13 +1,20 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const { Product } = require('./models/product.model');
+
 const app = express();
 app.use(express.json());
 
-mongoose.connect("mongodb+srv://krushnakhairnar536:g7LzM85CekurCYrd@backendcrud.zdtoyre.mongodb.net/")
-.then(()=> {
-    console.log("Connected to Database");
-});
+const uri = process.env.MONGO_URI;
+console.log("Mongo URI:", uri);
+
+mongoose.connect(uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => console.log("MongoDB connected"))
+.catch(err => console.error("MongoDB connection error:", err));
 
 //READ
 app.get('/products', async (req,res) => {
